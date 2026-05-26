@@ -82,7 +82,7 @@ npm run dev
 ### Frontend (`frontend/.env`)
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=https://task-manager-app-mky.vercel.app/
 ```
 
 ### Backend (`backend/.env`)
@@ -91,7 +91,7 @@ VITE_API_URL=http://localhost:5000/api
 PORT=5000
 MONGO_URI=mongodb://127.0.0.1:27017/task-manager-app
 JWT_SECRET=your_super_secret_key
-CLIENT_URL=http://localhost:5173
+CLIENT_URL=https://task-manager-app-ten-zeta.vercel.app/
 ```
 
 ## API Endpoints
