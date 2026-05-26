@@ -1,6 +1,8 @@
 # Task Manager App
 
 A full-stack internship assignment project where users can register, login, and manage personal tasks across three workflow stages: **Todo**, **In Progress**, and **Done**.
+## Check-out live url: 
+https://task-manager-app-mky.vercel.app/
 
 ## Features
 
@@ -157,8 +159,3 @@ CLIENT_URL=https://task-manager-app-ten-zeta.vercel.app/
 
 AI-assisted tools were used during development, and the backend implementation is included as required by the assignment.
 
-## Screenshots (Placeholder)
-
-- Register Page: `[Add screenshot here]`
-- Login Page: `[Add screenshot here]`
-- Dashboard Page: `[Add screenshot here]`
