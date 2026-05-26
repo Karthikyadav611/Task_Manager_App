@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const DEFAULT_API_URL = "http://localhost:5000/api";
+const normalizeApiBaseUrl = (url) => (url || DEFAULT_API_URL).trim().replace(/\/+$/, "");
+const API_URL = normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 const TOKEN_STORAGE_KEY = "task_manager_token";
 
 let authLogoutHandler = null;
@@ -35,15 +37,15 @@ export const registerAuthLogoutHandler = (handler) => {
 };
 
 export const authApi = {
-  register: (payload) => api.post("/auth/register", payload),
-  login: (payload) => api.post("/auth/login", payload),
+  register: (payload) => api.post("auth/register", payload),
+  login: (payload) => api.post("auth/login", payload),
 };
 
 export const taskApi = {
-  getAll: () => api.get("/tasks"),
-  create: (payload) => api.post("/tasks", payload),
-  update: (taskId, payload) => api.put(`/tasks/${taskId}`, payload),
-  remove: (taskId) => api.delete(`/tasks/${taskId}`),
+  getAll: () => api.get("tasks"),
+  create: (payload) => api.post("tasks", payload),
+  update: (taskId, payload) => api.put(`tasks/${taskId}`, payload),
+  remove: (taskId) => api.delete(`tasks/${taskId}`),
 };
 
 export const getApiErrorMessage = (error, fallback = "Something went wrong.") =>
