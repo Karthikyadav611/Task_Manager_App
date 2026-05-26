@@ -10,6 +10,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
+const normalizeOrigin = (value = "") => value.trim().replace(/\/+$/, "");
 
 const bootstrap = async () => {
   try {
@@ -19,7 +20,7 @@ const bootstrap = async () => {
     const allowedOrigins = clientUrl
       ? clientUrl
           .split(",")
-          .map((url) => url.trim())
+          .map((url) => normalizeOrigin(url))
           .filter(Boolean)
       : [];
     const localhostRegex = /^http:\/\/(localhost|127\.0\.0\.1):\d+$/;
@@ -32,11 +33,11 @@ const bootstrap = async () => {
             return callback(null, true);
           }
 
-          if (allowedOrigins.includes(origin)) {
+          if (allowedOrigins.includes(normalizeOrigin(origin))) {
             return callback(null, true);
           }
 
-          return callback(new Error(`CORS blocked for origin: ${origin}`));
+          return callback(null, false);
         },
       })
     );
