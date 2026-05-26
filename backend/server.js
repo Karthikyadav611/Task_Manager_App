@@ -34,15 +34,13 @@ app.use(
         return callback(null, true);
       }
 
-      return callback(new Error(`CORS blocked for origin: ${origin}`));
+      return callback(new Error(`CORS blocked: ${origin}`));
     },
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
-
-app.options("*", cors());
 
 app.use(express.json());
 
@@ -60,9 +58,11 @@ const bootstrap = async () => {
   try {
     await connectDB();
 
-    app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
-    });
+    if (process.env.NODE_ENV !== "production") {
+      app.listen(port, () => {
+        console.log(`Server running on port ${port}`);
+      });
+    }
   } catch (error) {
     console.error(`Failed to start server: ${error.message}`);
     process.exit(1);
@@ -70,3 +70,5 @@ const bootstrap = async () => {
 };
 
 bootstrap();
+
+export default app;
